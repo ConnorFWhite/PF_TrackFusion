@@ -76,14 +76,14 @@ pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,start,
                 er=400,timebuff=300){
   parts<-initialize(x=start[1],y=start[2],nPart = nPart,sd=startSD)
   
-  X_p<-rep(0,length(heading))
-  Y_p<-rep(0,length(heading))
-  Y_sd<-rep(0,length(heading))
-  X_sd<-rep(0,length(heading))
+  X_p<-rep(0,length(headings))
+  Y_p<-rep(0,length(headings))
+  Y_sd<-rep(0,length(headings))
+  X_sd<-rep(0,length(headings))
   
   unknownPos<-timeoff(X,Y)
   
-  for(i in 1:length(heading)){
+  for(i in 1:length(headings)){
     pdists<-pdist(px = parts[,1],py = parts[,2],X = unknownPos[i,1],Y=unknownPos[i,2])
     
     if(!is.na(SignalDB[i])){
