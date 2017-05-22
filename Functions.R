@@ -74,7 +74,7 @@ pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,start,
                 near=10,maxD=200,midDB=70,rate=7,
                 min = 10,den = .2,
                 er=400,timebuff=300){
-  parts<-initialize(x=start[1],y=start[2],nPart = nPart,sd=startSD)
+  parts<-initialize(x=X[which(!is.na(X))[1]],y=Y[which(!is.na(Y))[1]],nPart = nPart,sd=startSD)
   
   X_p<-rep(0,length(headings))
   Y_p<-rep(0,length(headings))
