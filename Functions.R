@@ -102,6 +102,10 @@ pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,start,
       start<-(1/sqrt(4*pi*er*timex))
       exponent<- exp(-1*(pdists^2)/(4*er*timex))
       p_weight<-start*exponent
+      
+      #cut of the top of the distribution 
+      plim<-(1/sqrt(4*pi*er*timex))*exp(-1*((500 + (1*.3*timex))^2)/(4*er*timex))
+      p_weight[p_weight>plim]<-plim
     }
     #Standardize
     p_weight<-p_weight/sum(p_weight)
