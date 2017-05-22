@@ -67,7 +67,7 @@ timeoff<-function(X,Y){
 
 
 
-pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,start,
+pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,
                 nPart=500,startSD=100,
                 headSD = 90*(pi/180),
                 speed = 2, speedSD = 2,
@@ -98,13 +98,13 @@ pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,start,
       
       
     }else{
-      timex<-(unknownPos[i,2] +timebuff)
+      timex<-(unknownPos[i,3] +timebuff)
       start<-(1/sqrt(4*pi*er*timex))
       exponent<- exp(-1*(pdists^2)/(4*er*timex))
       p_weight<-start*exponent
       
       #cut of the top of the distribution 
-      plim<-(1/sqrt(4*pi*er*timex))*exp(-1*((500 + (1*.3*timex))^2)/(4*er*timex))
+      plim<-(1/sqrt(4*pi*er*timex))*exp(-1*((300 + (1*.1*timex))^2)/(4*er*timex))
       p_weight[p_weight>plim]<-plim
     }
     #Standardize
