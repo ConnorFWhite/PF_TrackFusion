@@ -61,7 +61,6 @@ png(paste(shark,"_TrackODBA.png",sep=""))
 #ODBA
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.73,33.76), xlim=c(-118.14,-118.105),col="tan",bg="lightblue")
-ODBAScale<-filter(collapse(datG[,7],freq = 25),filter=rep(1,60)/60,sides=2,circular=TRUE)
 points(dat$Lat_Est ~ dat$Long_Est,, cex=.5,pch=16,col=color.scale(filter(dat$ODBA,filter=rep(1,30)/30,sides=2,circular=TRUE), zlim=c(0,.12),transparent.color="darkred"))
 image.plot(legend.only=TRUE,zlim=c(0,.12),smallplot = c(.1,.13,.1,.4))
 text("ODBA (g)",x=-118.133,y=33.739,cex=1.5,font=2,srt=-90,pos=4)
