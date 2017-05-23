@@ -20,7 +20,7 @@ dat$DateTime<-as.POSIXct(dat$DateTime,format="%Y-%m-%d %H:%M:%OS")
 setwd("C:/Users/Connor/Dropbox (NEAQ BEPP Group)/JWS_AccelData/Figures")
 
 
-png(paste(shark,"_Track.png",sep=""))
+png(paste(shark,"_Track.png",sep=""),width = 400*2,height=400*2,res=72*2)
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
 points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(1:nrow(dat),col=c(rev(tim.colors(128/2)),tim.colors(128/2))))
@@ -34,7 +34,7 @@ colorRampLegend(x=-118.1436,y=33.75823,
 dev.off()
 
 
-png(paste(shark,"_TrackDepth.png",sep=""))
+png(paste(shark,"_TrackDepth.png",sep=""),width = 400*2,height=400*2,res=72*2)
 #Depth
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -45,7 +45,7 @@ text("Depth (m)",x=-118.133,y=33.7624,cex=1.5,font=2,srt=-90)
 dev.off()
 
 
-png(paste(shark,"_TrackTemp.png",sep=""))
+png(paste(shark,"_TrackTemp.png",sep=""),width = 400*2,height=400*2,res=72*2)
 #Temp
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -56,7 +56,7 @@ text("Temperature (c)",x=-118.132,y=33.7624,cex=1.5,font=2,srt=-90)
 dev.off()
 
 
-png(paste(shark,"_TrackODBA.png",sep=""))
+png(paste(shark,"_TrackODBA.png",sep=""),width = 400*2,height=400*2,res=72*2)
 #ODBA
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -67,7 +67,7 @@ scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
 dev.off()
 
 
-png(paste(shark,"_TrackTBF.png",sep=""))
+png(paste(shark,"_TrackTBF.png",sep=""),width = 400*2,height=400*2,res=72*2)
 #TBF
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -77,7 +77,7 @@ text("Tailbeat Freq(Hz)",x=-118.132,y=33.7624,cex=1.5,font=2,srt=-90)
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
 dev.off()
 
-png(paste(shark,"_TrackTBA.png",sep=""))
+png(paste(shark,"_TrackTBA.png",sep=""),width = 400*2,height=400*2,res=72*2)
 #TBA
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -88,7 +88,7 @@ scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
 dev.off()
 
 
-png(paste(shark,"_TrackHeading.png",sep=""))
+png(paste(shark,"_TrackHeading.png",sep=""),width = 400*2,height=400*2,res=72*2)
 #Heading #Looks like fucking playdoh
 cols<-c(colorRampPalette(c("red","blue"))(40),
     colorRampPalette(c("blue","green"))(40),
