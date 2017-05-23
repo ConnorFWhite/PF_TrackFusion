@@ -137,3 +137,26 @@ eval<-function(estX=PF_forward[,1],estY=PF_forward[,2],Xob=PFdat$X,Yob=PFdat$Y,s
   p_weight<-partWeight(ops = dists,mean=mean,sd = sd)
   return(p_weight)
 }
+
+
+colorRampLegend<-function(x,y,at,labels,lims,height=0.012,width=0.001,laboff=0.0005,tick=0.0005,nlevels=180,legend.lab="",legoff=9){
+  x0<-rep(x, nlevels)
+  x1<-rep(x+width,nlevels)
+  y0=seq(y,y+height,length.out=nlevels)
+  y1=seq(y,y+height,length.out=nlevels)
+  cols<-c(rev(tim.colors(nlevels/2)),tim.colors(nlevels/2))
+  
+  segments(x0=x0,x1=x1,y0=y0,y1=y1,col=cols,lwd=2)
+  rect(xleft = x,ybottom = y,ytop = y+height,xright = x+width,lwd=2.3)
+  
+  loc<-round((at-lims[1])/(lims[2]-lims[1])*nlevels)
+  text(x = x1[loc]+laboff,
+       y = y1[loc],
+       labels=labels,pos = 4)
+  segments(x0=x1[loc],x1=(x1[loc]+tick),y0=y1[loc],y1=y1[loc],lwd=3)
+  
+  text(legend.lab,x= x+width*legoff,y=y0[nlevels/2],cex=1.5,font=2,srt=-90,pos=4)
+}
+
+
+
