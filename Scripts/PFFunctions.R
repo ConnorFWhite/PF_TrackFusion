@@ -73,7 +73,8 @@ pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,
                 speed = 2, speedSD = 2,
                 near=10,maxD=200,midDB=70,rate=7,
                 min = 10,den = .2,
-                er=400,timebuff=300){
+                er=400,timebuff=300,
+                chopexp=0,chopD=300){
   parts<-initialize(x=X[which(!is.na(X))[1]],y=Y[which(!is.na(Y))[1]],nPart = nPart,sd=startSD)
   
   X_p<-rep(0,length(headings))
@@ -104,7 +105,7 @@ pfRun<-function(SignalDB,X=PFdat$X,Y=PFdat$Y,headings,
       p_weight<-start*exponent
       
       #cut of the top of the distribution 
-      plim<-(1/sqrt(4*pi*er*timex))*exp(-1*((300 + (1*.1*timex))^2)/(4*er*timex))
+      plim<-(1/sqrt(4*pi*er*timex))*exp(-1*((chopD + (chopexp*timex))^2)/(4*er*timex))
       p_weight[p_weight>plim]<-plim
     }
     #Standardize
