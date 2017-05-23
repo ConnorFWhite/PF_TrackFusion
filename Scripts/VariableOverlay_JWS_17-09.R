@@ -21,38 +21,16 @@ dat$DateTime<-as.POSIXct(dat$DateTime,format="%Y-%m-%d %H:%M:%OS")
 #quartz(height=10,width=15)
 windows(height=10,width=15)
 par(mar=c(0,0,0,0),mfrow=c(2,3))
-#par(mar=c(0,0,0,0))
+par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.73,33.76), xlim=c(-118.14,-118.105),col="tan",bg="lightblue")
 points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(1:nrow(dat),col=c(rev(tim.colors(128/2)),tim.colors(128/2))))
 #points(dat$Latitude ~ dat$Longitude, cex=.1,pch=16,col=color.scale(1:nrow(dat)))
 scaleBar(max = 2,unit = "km",x = -118.126,y = 33.731)
-
-x=-118.1436
-y=33.75823
-height=0.012
-width=0.001
-nlevels=180
-lims<-as.numeric(c(min(dat$DateTime),max(dat$DateTime)))
-laboff<-0.0001
-tick<-0.0005
-at=as.numeric(seq(as.POSIXct("2017-05-17 12:00:00"),length.out=7,by=3600*4))
-labels=format(seq(as.POSIXct("2017-05-17 12:00:00"),length.out=7,by=3600*4),format="%H:%M %m-%d")
-
-
-x0<-rep(x, nlevels)
-x1<-rep(x+width,nlevels)
-y0=seq(y,y+height,length.out=nlevels)
-y1=seq(y,y+height,length.out=nlevels)
-cols<-c(rev(tim.colors(nlevels/2)),tim.colors(nlevels/2))
-
-segments(x0=x0,x1=x1,y0=y0,y1=y1,col=cols,lwd=2)
-rect(xleft = x,ybottom = y,ytop = y+height,xright = x+width,lwd=2.3)
-
-loc<-round((at-lims[1])/(lims[2]-lims[1])*nlevels)
-text(x = x1[loc]+laboff,
-     y = y1[loc],
-     labels=labels,pos = 4)
-segments(x0=x1[loc],x1=(x1[loc]+tick),y0=y1[loc],y1=y1[loc],lwd=3)
+colorRampLegend(x=-118.1392,y=33.73,
+                lims=as.numeric(c(min(dat$DateTime),max(dat$DateTime))),
+                laboff=0.0001,tick=0.0005,at=as.numeric(seq(as.POSIXct("2017-05-17 12:00:00"),length.out=7,by=3600*4)),
+                labels=format(seq(as.POSIXct("2017-05-17 12:00:00"),length.out=7,by=3600*4),format="%H:%M %m-%d"),
+                height=0.012,width=0.001,nlevels=180,legend.lab="Time",legoff=8)
 
 
 #Depth
