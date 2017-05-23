@@ -92,7 +92,7 @@ dev.off()
 
 
 
-
+png(paste(shark,"_TrackHeading.png",sep=""))
 #Heading #Looks like fucking playdoh
 cols<-c(colorRampPalette(c("red","blue"))(40),
         colorRampPalette(c("blue","green"))(40),
@@ -109,3 +109,4 @@ y<-  33.734
 points(I(cos(as)*0.0032 + y ) ~ I(sin(as)*0.004 + x),col=cols,pch=16)
 as<-seq(0,1.7*pi,by=pi/2)
 text( y=I(cos(as)*0.0032 + y ), x=I(sin(as)*0.004 + x), labels=c("N","E","S","W"),font=2,pos=c(3,4,1,2),cex=1.5)
+dev.off()
