@@ -20,6 +20,7 @@ dat$DateTime<-as.POSIXct(dat$DateTime,format="%Y-%m-%d %H:%M:%OS")
 
 #quartz(height=10,width=15)
 #par(mar=c(0,0,0,0),mfrow=c(2,3))
+windows()
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
 points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(1:nrow(dat),col=c(rev(tim.colors(128/2)),tim.colors(128/2))))
@@ -34,8 +35,8 @@ nlevels=180
 lims<-as.numeric(c(min(dat$DateTime),max(dat$DateTime)))
 laboff<-0.0001
 tick<-0.0005
-at=as.numeric(seq(as.POSIXct("2017-05-10 12:00:00"),length.out=7,by=3600*4))
-labels=format(seq(as.POSIXct("2017-05-10 12:00:00"),length.out=7,by=3600*4),format="%H:%M %m-%d")
+at=as.numeric(seq(round((min(dat$DateTime)+3600),"hours"),length.out=7,by=3600*4))
+labels=format(seq(round((min(dat$DateTime)+3600),"hours"),length.out=7,by=3600*4),format="%H:%M %m-%d")
 
 
 x0<-rep(x, nlevels)
