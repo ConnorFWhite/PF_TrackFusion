@@ -18,43 +18,22 @@ dat<-read.csv(paste(wd,"/",shark,"/",shark,"_VR100Fused.csv",sep=""))
 dat$DateTime<-as.POSIXct(dat$DateTime,format="%Y-%m-%d %H:%M:%OS")
 
 
-#quartz(height=10,width=15)
-#par(mar=c(0,0,0,0),mfrow=c(2,3))
-windows()
+
+png(paste(shark,"_Track.png",sep=""))
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
 points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(1:nrow(dat),col=c(rev(tim.colors(128/2)),tim.colors(128/2))))
 #points(dat$Latitude ~ dat$Longitude, cex=.1,pch=16,col=color.scale(1:nrow(dat)))
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
-
-x=-118.1436
-y=33.75823
-height=0.012
-width=0.001
-nlevels=180
-lims<-as.numeric(c(min(dat$DateTime),max(dat$DateTime)))
-laboff<-0.0001
-tick<-0.0005
-at=as.numeric(seq(round((min(dat$DateTime)+3600),"hours"),length.out=7,by=3600*4))
-labels=format(seq(round((min(dat$DateTime)+3600),"hours"),length.out=7,by=3600*4),format="%H:%M %m-%d")
+colorRampLegend(x=-118.1436,y=33.75823,
+                lims=as.numeric(c(min(dat$DateTime),max(dat$DateTime))),
+                laboff=0.0001,tick=0.0005,at=as.numeric(seq(as.POSIXct("2017-05-10 12:00:00"),length.out=7,by=3600*4)),
+                labels=format(seq(as.POSIXct("2017-05-10 12:00:00"),length.out=7,by=3600*4),format="%H:%M %m-%d"),
+                height=0.012,width=0.001,nlevels=180,legend.lab="Time",legoff=10)
+dev.off()
 
 
-x0<-rep(x, nlevels)
-x1<-rep(x+width,nlevels)
-y0=seq(y,y+height,length.out=nlevels)
-y1=seq(y,y+height,length.out=nlevels)
-cols<-c(rev(tim.colors(nlevels/2)),tim.colors(nlevels/2))
-
-segments(x0=x0,x1=x1,y0=y0,y1=y1,col=cols,lwd=2)
-rect(xleft = x,ybottom = y,ytop = y+height,xright = x+width,lwd=2.3)
-
-loc<-round((at-lims[1])/(lims[2]-lims[1])*nlevels)
-text(x = x1[loc]+laboff,
-     y = y1[loc],
-     labels=labels,pos = 4)
-segments(x0=x1[loc],x1=(x1[loc]+tick),y0=y1[loc],y1=y1[loc],lwd=3)
-
-
+png(paste(shark,"_TrackDepth.png",sep=""))
 #Depth
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -62,8 +41,10 @@ points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(dat$Depth*-1, z
 image.plot(legend.only=TRUE,zlim=c(-9,0),smallplot = c(.65,.67,.65,.97))
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
 text("Depth (m)",x=-118.133,y=33.7624,cex=1.5,font=2,srt=-90)
+dev.off()
 
 
+png(paste(shark,"_TrackTemp.png",sep=""))
 #Temp
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -71,8 +52,10 @@ points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(dat$Temp, zlim=
 image.plot(legend.only=TRUE,zlim=c(17.2,19),smallplot = c(.65,.67,.65,.97))
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
 text("Temperature (c)",x=-118.132,y=33.7624,cex=1.5,font=2,srt=-90)
+dev.off()
 
 
+png(paste(shark,"_TrackODBA.png",sep=""))
 #ODBA
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -81,8 +64,10 @@ points(dat$Lat_Est ~ dat$Long_Est,, cex=.5,pch=16,col=color.scale(dat$ODBA, zlim
 image.plot(legend.only=TRUE,zlim=c(0,.1),smallplot = c(.65,.67,.65,.97))
 text("ODBA (g)",x=-118.132,y=33.7624,cex=1.5,font=2,srt=-90)
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
+dev.off()
 
 
+png(paste(shark,"_TrackTBF.png",sep=""))
 #TBF
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -90,8 +75,9 @@ points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale((1/dat$TBPeriod
 image.plot(legend.only=TRUE,zlim=1/c(2,1),smallplot = c(.65,.67,.65,.97))
 text("Tailbeat Freq(Hz)",x=-118.132,y=33.7624,cex=1.5,font=2,srt=-90)
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
+dev.off()
 
-
+png(paste(shark,"_TrackTBA.png",sep=""))
 #TBA
 par(mar=c(0,0,0,0))
 plot(coast,ylim=c(33.726,33.77), xlim=c(-118.17,-118.125),col="tan",bg="lightblue")
@@ -99,7 +85,7 @@ points(dat$Lat_Est ~ dat$Long_Est, cex=.5,pch=16,col=color.scale(dat$TBAmp,zlim=
 image.plot(legend.only=TRUE,zlim=c(2,4),smallplot = c(.65,.67,.65,.97))
 text("Tailbeat Amp",x=-118.132,y=33.7624,cex=1.5,font=2,srt=-90)
 scaleBar(max = 2,unit = "km",x = -118.1471,y = 33.727)
-
+dev.off()
 
 
 #Heading #Looks like fucking playdoh
