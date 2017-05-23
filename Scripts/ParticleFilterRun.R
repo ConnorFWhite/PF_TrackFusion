@@ -46,9 +46,9 @@ PF_avg[,2]<-(PF_forward[,2]*p_forward) +(PF_rev[,2] * p_rev)
 
 
 
-###########Project Functions now working
-library(proj4)
+###########Project Functions now working, some times give an error, chat lat_1 to lat_0
 library(raster)
+library(proj4)
 #xy_F<-project(PF_forward[,c(1,2)],
 #              proj= '+proj=lcc +lon_0= -118.12212 +lat_1=33.7373 +datum=WGS84 +units=m ',
 #              inverse=TRUE)
@@ -61,7 +61,7 @@ library(raster)
 #colnames(xy_R)<-c("Long_Est","Lat_Est")
 
 xy<-proj4::project(PF_avg[,c(1,2)],
-            proj= '+proj=lcc +lon_0=-118.12212 +lat_0=33.7373 +datum=WGS84 +units=m ', inverse =TRUE)
+            proj= '+proj=lcc +lon_0=-118.12212 +lat_1=33.7373 +datum=WGS84 +units=m ', inverse =TRUE)
 colnames(xy)<-c("Long_Est","Lat_Est")
 
 dat<-data.frame(PFdat,xy)
