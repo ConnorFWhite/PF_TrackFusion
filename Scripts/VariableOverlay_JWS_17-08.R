@@ -103,6 +103,6 @@ x<- -118.1405
 y<-  33.764
 points(I(cos(as)*0.0032 + y ) ~ I(sin(as)*0.004 + x),col=cols,pch=16)
 as<-seq(0,1.7*pi,by=pi/2)
-text( y=I(cos(as)*0.0032 + y ), x=I(sin(as)*0.004 + x), labels=c("N","S","E","W"),font=2,pos=c(3,4,1,2),cex=1.5)
+text( y=I(cos(as)*0.0032 + y ), x=I(sin(as)*0.004 + x), labels=c("N","E","S","W"),font=2,pos=c(3,4,1,2),cex=1.5)
 
 dev.off()
