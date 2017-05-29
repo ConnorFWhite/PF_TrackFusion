@@ -16,9 +16,9 @@ PF_forward<-pfRun(SignalDB=PFdat$Signal..dB.,X=PFdat$X,Y=PFdat$Y,headings=PFdat$
                   nPart=1000,startSD=1000,
                   headSD = 75*(pi/180),
                   speed = 1.2, speedSD = 3,
-                  near=10,maxD=200,midDB=70,rate=7,
+                  near=15,maxD=300,midDB=80,rate=7,
                   min = 15,den = .25,
-                  er=2500,timebuff=10)
+                  er=4500,timebuff=10)
 
 PF_rev<-pfRun(SignalDB=rev(PFdat$Signal..dB.),X=rev(PFdat$X),Y=rev(PFdat$Y),headings=rev(PFdat$Heading)+pi,
               nPart=1000,startSD=1000,
@@ -26,7 +26,7 @@ PF_rev<-pfRun(SignalDB=rev(PFdat$Signal..dB.),X=rev(PFdat$X),Y=rev(PFdat$Y),head
               speed = 1.2, speedSD = 2,
               near=10,maxD=200,midDB=70,rate=7,
               min = 15,den = .25,
-              er=2500,timebuff=10)
+              er=4500,timebuff=10)
 PF_rev<-apply(PF_rev,MARGIN = 2,rev)
 
 
@@ -61,7 +61,7 @@ library(proj4)
 #colnames(xy_R)<-c("Long_Est","Lat_Est")
 
 xy<-proj4::project(PF_avg[,c(1,2)],
-            proj= '+proj=lcc +lon_0=-118.12212 +lat_0=33.7373 +datum=WGS84 +units=m ', inverse =TRUE)
+            proj= '+proj=lcc +lon_0=-118.12212 +lat_1=33.7373 +datum=WGS84 +units=m ', inverse =TRUE)
 colnames(xy)<-c("Long_Est","Lat_Est")
 
 dat<-data.frame(PFdat,xy)

@@ -64,3 +64,41 @@ source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/IMU1Hz.R")
 source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/mergeIMU_VR100.R")
 source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/ParticleFilterRun.R")
 
+
+
+###############
+###############Running for third shark
+############### Number are a bit uncertail currently
+library(TeleFunc)
+library(gRumble)
+wd<-"C:/Users/Connor/Dropbox (NEAQ BEPP Group)/JWS_AccelData/"
+
+shark<-"JWS_17-11_20170525"
+
+IMU_Start<-as.POSIXct("2017-05-25 06:35:00")
+release<-as.POSIXct("2017-05-25 09:02:55")
+pop<-as.POSIXct("2017-05-26 13:01:13")
+
+
+releaseLat<- 33.7524
+releaseLong<- -118.1412
+
+popLat<-  33.4238
+popLong<-  -117.6437
+
+dat_Freq<-25
+latOrg<- 33.7373
+longOrg<- -118.12212
+
+magOff = c(0.0881,0.0415,0)
+declination<- 11.5 * (pi/ 180)
+
+source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/PFFunctions.R")
+source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/IMU_MergeStandardization.R")
+source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/IMU1Hz.R")
+source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/mergeIMU_VR100.R")
+source("C:/Users/Connor/Documents/PF_TrackFusion/Scripts/ParticleFilterRun.R")
+
+
+
+
